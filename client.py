@@ -44,7 +44,7 @@ def piathome():
         dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
-            submitreq = requests.get(url='https://piathome.utools.club/commit', params={'num': result})
+        submitreq = requests.get(url='https://piathome.utools.club/commit', params={'num': result})
 
 while True:
     dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
