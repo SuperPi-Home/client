@@ -4,7 +4,7 @@ import requests
 ####################导入时间模块
 import time
 def piathome():
-    print("Running Job...")
+    print("正在运行计算任务...")
     ###############计算当前时间
     time1=time.time()
     ################算法根据马青公式计算圆周率####################
@@ -46,10 +46,14 @@ def piathome():
     dojobs = int(dojobsreq.content)
     if dojobs:
         submitreq = requests.get(url='http://piathome.utools.club/commit', params={'num': result})
+    else:
+        print("任务已被其他设备计算完毕，本机计算任务将取消上传...")
 
 while True:
     dojobsreq = requests.get(url='http://piathome.utools.club/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
         piathome()
+    else:
+        print("通讯被推迟60s(msg:没有新任务)...")
     time.sleep(60)
