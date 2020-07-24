@@ -4,6 +4,7 @@ import requests
 ####################导入时间模块
 import time
 def piathome():
+    print("Running Job...")
     ###############计算当前时间
     time1=time.time()
     ################算法根据马青公式计算圆周率####################
