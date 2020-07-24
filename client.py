@@ -41,7 +41,7 @@ def piathome():
     print(result)
     time2=time.time()
     print(u'总共耗时：' + str(time2 - time1) + 's')
-        dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
+    dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
         submitreq = requests.get(url='https://piathome.utools.club/commit', params={'num': result})
