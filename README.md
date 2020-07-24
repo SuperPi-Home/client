@@ -1,5 +1,4 @@
 # client
-English is at at pages end!
 
 加入SuperPi@Home和我们一起使用计算机的空闲时间来计算圆周率！
 
