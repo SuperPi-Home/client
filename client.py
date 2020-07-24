@@ -7,7 +7,7 @@ def piathome():
     ###############计算当前时间
     time1=time.time()
     ################算法根据马青公式计算圆周率####################
-    pointsreq = requests.get(url='https://piathome.utools.club/needpoints')
+    pointsreq = requests.get(url='http://piathome.utools.club/needpoints')
     number = int(pointsreq.content)
     # 多计算10位，防止尾数取舍的影响
     number1 = number+10
@@ -41,13 +41,13 @@ def piathome():
     print(result)
     time2=time.time()
     print(u'总共耗时：' + str(time2 - time1) + 's')
-    dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
+    dojobsreq = requests.get(url='http://piathome.utools.club/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
-        submitreq = requests.get(url='https://piathome.utools.club/commit', params={'num': result})
+        submitreq = requests.get(url='http://piathome.utools.club/commit', params={'num': result})
 
 while True:
-    dojobsreq = requests.get(url='https://piathome.utools.club/dojobs')
+    dojobsreq = requests.get(url='http://piathome.utools.club/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
         piathome()
