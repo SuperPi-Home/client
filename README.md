@@ -3,7 +3,7 @@
 加入SuperPi@Home和我们一起使用计算机的空闲时间来计算圆周率！
 
 ## 如何安装运行
-0. Windows可通过[下载](https://github.com/SuperPi-Home/client/releases)编译的程序安装运行(直接双击桌面快捷方式即可开始运行 注意每次重启或崩溃都需要重新启动程序，窗口不可关闭否则程序将停止工作)
+0. Windows可通过[下载](https://github.com/SuperPi-Home/client/releases)编译的程序解压运行(注意每次重启或崩溃都需要重新启动程序，窗口不可关闭否则程序将停止工作)
 
 1. 安装Python2.7（注意必须是2.7否则运行会报错）
 
