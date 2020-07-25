@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 import requests
-####################导入时间模块
-import time
-####################服务器地址设置
 import sys
 import os
-if not sys.argv[1]:
-    server_url = str(sys.argv[1])
-else:
-    serverurlreq = requests.get(url='https://gitee.com/zengweikang/SuperPiAtHome_cloudcfg/raw/master/server_url.cloudcfg')
-    server_url = str(serverurlreq.content)
+####################导入时间模块
+import time
+####################服务器地址设置和参数解析
+serverurlreq = requests.get(url='https://gitee.com/zengweikang/SuperPiAtHome_cloudcfg/raw/master/server_url.cloudcfg')
+server_url = str(serverurlreq.content)
+
+if "-su" in sys.argv:
+    server_url = str(sys.argv[2])
 
 def piathome():
     print("正在运行计算任务...")
