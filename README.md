@@ -11,7 +11,7 @@
 
 3. Clone本仓库
 
-4. 运行（cmd或终端进入仓库目录运行python client.py  注意每次重启或崩溃都需要重新启动程序，cmd或终端窗口不可关闭否则程序将停止工作）
+4. 运行（cmd或终端进入仓库目录运行python SuperPi@Home.py  注意每次重启或崩溃都需要重新启动程序，cmd或终端窗口不可关闭否则程序将停止工作）
 
 # client (In English)
 
@@ -26,4 +26,4 @@ Join SuperPi@Home and use your computer’s free time to calculate Pi!
 
 3. Clone this repository
 
-4. Run (cmd or terminal enter the warehouse directory and run python client.py. Note that you need to restart the program every time you restart or crash. The cmd or terminal window cannot be closed or the program will stop working)
+4. Run (cmd or terminal enter the warehouse directory and run python SuperPi@Home.py. Note that you need to restart the program every time you restart or crash. The cmd or terminal window cannot be closed or the program will stop working)
