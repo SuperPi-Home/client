@@ -18,7 +18,7 @@
 Join SuperPi@Home and use your computer’s free time to calculate Pi!
 
 ## How to install and run
-0. Windows can be installed and run through the program compiled by [download](https://github.com/SuperPi-Home/client/releases) (directly double-click the desktop shortcut to start running). The program needs to be restarted for each restart or crash. The window cannot be closed or the program will stop working)
+0. Windows can decompress and run the compiled program by [download](https://github.com/SuperPi-Home/client/releases) (note that you need to restart the program every time you restart or crash, and the window cannot be closed, otherwise the program will stop jobs)
 
 1. Install Python2.7 (note that it must be 2.7, otherwise an error will be reported)
 
