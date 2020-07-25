@@ -43,8 +43,9 @@ jobs:
         run: |
           if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
           cd dist
-          7z a SuperPi@home.zip SuperPi@Home.exe
-          echo ::set-output name=binary_path::./
+          mkdir upload
+          7z a upload/SuperPi@home.zip SuperPi@Home.exe
+          echo ::set-output name=binary_path::upload
           echo ::set-output name=artifact_name::SuperPi@home.zip
           echo ::set-output name=file_name::SuperPi@home.zip
       
@@ -56,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.before_deploy.outputs.file_name }}
+          asset_path: ./dist/upload/${{ steps.before_deploy.outputs.file_name }}
           asset_name: ${{ steps.before_deploy.outputs.file_name }}
           asset_content_type: application/zip
 
@@ -65,5 +66,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.before_deploy.outputs.artifact_name }}
-          path: ${{ steps.before_deploy.outputs.binary_path }}
+          path: ./dist/${{ steps.before_deploy.outputs.binary_path }}
      
