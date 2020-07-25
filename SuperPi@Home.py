@@ -56,4 +56,5 @@ while True:
         piathome()
     else:
         print("通讯被推迟60s(msg:没有新任务)...")
+    
     time.sleep(60)
