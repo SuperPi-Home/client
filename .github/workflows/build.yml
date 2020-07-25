@@ -42,8 +42,8 @@ jobs:
           COMMIT_SHA: ${{ github.sha }}
         run: |
           if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
-          mkdir client-${TAG}
           cd dist
+          mkdir client-${TAG}
           cp *.exe client-${TAG}/
           7z a client-${LABEL}-${TAG}.zip client-${TAG}/
           echo ::set-output name=binary_path::client-${TAG}
