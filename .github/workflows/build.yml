@@ -1,0 +1,63 @@
+name: Build
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  schedule:
+    - cron: '30 3 * * 0'
+
+env:
+  TAG: ${{ github.ref }}
+
+jobs:
+  
+  # Windows Builds on Windows Server 2019
+  windows_build:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup pyinstaller
+        run: pip install pyinstaller
+
+      # Configure project with cmake
+      - name: Build
+        run: |
+         pyinstaller -F -i logo.ico client.py
+     
+      - name: Prepare for Deploy
+        shell: bash
+        id: before_deploy
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
+          mkdir client-${TAG}
+          cd dist/client
+          cp *.exe client-${TAG}/
+          7z a client-${LABEL}-${TAG}.zip client-${TAG}/
+          echo ::set-output name=binary_path::client-${TAG}
+          echo ::set-output name=artifact_name::client-${LABEL}-${TAG}
+          echo ::set-output name=file_name::client-${LABEL}-${TAG}.zip
+      
+      # Upload to GH Release
+      - name: Upload to GH Release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./${{ steps.before_deploy.outputs.file_name }}
+          asset_name: ${{ steps.before_deploy.outputs.file_name }}
+          asset_content_type: application/zip
+
+      # Upload to GH Actions Artifacts
+      - name: Upload To GH Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.before_deploy.outputs.artifact_name }}
+          path: ./${{ steps.before_deploy.outputs.binary_path }}
+     
