@@ -33,7 +33,7 @@ jobs:
       # Configure project with cmake
       - name: Build
         run: |
-         pyinstaller -F -i logo.ico client.py
+         pyinstaller -F -i logo.ico SuperPi@Home.py
      
       - name: Prepare for Deploy
         shell: bash
