@@ -16,6 +16,9 @@ jobs:
   windows_build:
     name: Windows
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [2.7]
     steps:
       - uses: actions/checkout@v2
 
