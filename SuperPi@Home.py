@@ -3,12 +3,21 @@ from __future__ import division
 import requests
 ####################导入时间模块
 import time
+####################服务器地址设置
+import sys
+import os
+if not sys.argv[1]:
+    server_url = str(sys.argv[1])
+else:
+    serverurlreq = requests.get(url='https://gitee.com/zengweikang/SuperPiAtHome_cloudcfg/raw/master/server_url.cloudcfg')
+    server_url = str(serverurlreq.content)
+
 def piathome():
     print("正在运行计算任务...")
     ###############计算当前时间
     time1=time.time()
     ################算法根据马青公式计算圆周率####################
-    pointsreq = requests.get(url='http://piathome.utools.club/needpoints')
+    pointsreq = requests.get(url='http://' + str(server_url) + '/needpoints')
     number = int(pointsreq.content)
     # 多计算10位，防止尾数取舍的影响
     number1 = number+10
@@ -42,15 +51,15 @@ def piathome():
     print(result)
     time2=time.time()
     print(u'总共耗时：' + str(time2 - time1) + 's')
-    dojobsreq = requests.get(url='http://piathome.utools.club/dojobs')
+    dojobsreq = requests.get(url='http://' + str(server_url) + '/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
-        submitreq = requests.get(url='http://piathome.utools.club/commit', params={'num': result})
+        submitreq = requests.get(url='http://' + str(server_url) + '/commit', params={'num': result})
     else:
         print("任务已被其他设备计算完毕，本机计算任务将取消上传...")
 
 while True:
-    dojobsreq = requests.get(url='http://piathome.utools.club/dojobs')
+    dojobsreq = requests.get(url='http://' + str(server_url) + '/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
         piathome()
