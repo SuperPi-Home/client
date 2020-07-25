@@ -10,10 +10,11 @@ serverurlreq = requests.get(url='https://gitee.com/zengweikang/SuperPiAtHome_clo
 server_url = str(serverurlreq.content)
 
 if "-su" in sys.argv:
+    print('Useing custom server url:' + str(sys.argv[2]))
     server_url = str(sys.argv[2])
 
 def piathome():
-    print("正在运行计算任务...")
+    print("Running Job...")
     ###############计算当前时间
     time1=time.time()
     ################算法根据马青公式计算圆周率####################
@@ -56,7 +57,7 @@ def piathome():
     if dojobs:
         submitreq = requests.get(url='http://' + str(server_url) + '/commit', params={'num': result})
     else:
-        print("任务已被其他设备计算完毕，本机计算任务将取消上传...")
+        print("The job has been calculated by other devices, the computer 's job will be canceled...")
 
 while True:
     dojobsreq = requests.get(url='http://' + str(server_url) + '/dojobs')
@@ -64,6 +65,6 @@ while True:
     if dojobs:
         piathome()
     else:
-        print("通讯被推迟60s(msg:没有新任务)...")
+        print("Communication is delayed for 60s (msg: no new job)...")
     
     time.sleep(60)
