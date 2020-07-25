@@ -13,6 +13,10 @@ if "-su" in sys.argv:
     print('Useing custom server url:' + str(sys.argv[2]))
     server_url = str(sys.argv[2])
 
+####################计算机凭据
+import socket
+hostname = socket.gethostname()
+
 def piathome():
     print("Running Job...")
     ###############计算当前时间
@@ -55,7 +59,7 @@ def piathome():
     dojobsreq = requests.get(url='http://' + str(server_url) + '/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
-        submitreq = requests.get(url='http://' + str(server_url) + '/commit', params={'num': result})
+        submitreq = requests.get(url='http://' + str(server_url) + '/commit', params={'num': result, 'hostname': hostname})
     else:
         print("The job has been calculated by other devices, the computer 's job will be canceled...")
 
