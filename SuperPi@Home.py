@@ -17,6 +17,15 @@ if "-su" in sys.argv:
 import socket
 hostname = socket.gethostname()
 
+####################检查更新
+updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '1.7', 'hostname': hostname})
+isupdate = int(updatereq.content)
+if isupdate:
+    print("Your version is too old.Please update first.")
+    print("https://github.com/SuperPi-Home/client/releases/latest")
+    startbrowser = os.system("start https://github.com/SuperPi-Home/client/releases/latest")
+    time.sleep(1200)
+
 def piathome():
     print("Running Job...")
     ###############计算当前时间
