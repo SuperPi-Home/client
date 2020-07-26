@@ -7,7 +7,7 @@
 
 1. 安装Python2.7（注意必须是2.7否则运行会报错）
 
-2. 安装requests库（cmd或终端运行python -m pip install reqeusts）
+2. 安装requests库（cmd或终端运行python -m pip install requests）
 
 3. Clone本仓库
 
