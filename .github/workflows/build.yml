@@ -30,7 +30,7 @@ jobs:
       - name: Setup Python Modules
         run: |
          pip install pyinstaller
-         pip install requests
+         pip install -r requirements.txt
      
       # Configure project with cmake
       - name: Build
