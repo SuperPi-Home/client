@@ -18,7 +18,7 @@ import socket
 hostname = socket.gethostname()
 
 ####################检查更新
-updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '1.7', 'hostname': hostname})
+updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '107', 'hostname': hostname})
 isupdate = int(updatereq.content)
 if isupdate:
     print("Your version is too old.Please update first.")
