@@ -18,13 +18,22 @@ import socket
 hostname = socket.gethostname()
 
 ####################检查更新
-updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '107', 'hostname': hostname})
+updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '108', 'hostname': hostname})
 isupdate = int(updatereq.content)
 if isupdate:
     print("Your version is too old.Please update first.")
     print("https://github.com/SuperPi-Home/client/releases/latest")
     startbrowser = os.system("start https://github.com/SuperPi-Home/client/releases/latest")
     time.sleep(1200)
+    exit()
+
+####################检查服务器开关
+upreq = requests.get(url='http://' + str(server_url) + '/up', params={'hostname': hostname})
+isup = int(upreq.content)
+if not isup:
+    print("The server is now in maintenance mode and cannot connect to the server. Please restart this program later.")
+    time.sleep(1200)
+    exit()
 
 def piathome():
     print("Running Job...")
