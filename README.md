@@ -1,4 +1,4 @@
-# client
+# client ![Build](https://github.com/SuperPi-Home/client/workflows/Build/badge.svg)
 
 加入SuperPi@Home和我们一起使用计算机的空闲时间来计算圆周率！
 
