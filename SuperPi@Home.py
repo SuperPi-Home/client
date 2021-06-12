@@ -18,7 +18,7 @@ import socket
 hostname = socket.gethostname()
 
 ####################检查更新
-updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '108', 'hostname': hostname})
+updatereq = requests.get(url='http://' + str(server_url) + '/update', params={'ver': '109', 'hostname': hostname})
 isupdate = int(updatereq.content)
 if isupdate:
     print("Your version is too old.Please update first.")
@@ -77,7 +77,7 @@ def piathome():
     dojobsreq = requests.get(url='http://' + str(server_url) + '/dojobs')
     dojobs = int(dojobsreq.content)
     if dojobs:
-        submitreq = requests.get(url='http://' + str(server_url) + '/commit', params={'num': result, 'hostname': hostname})
+        submitreq = requests.post(url='http://' + str(server_url) + '/commit', data={'num': result, 'hostname': hostname})
     else:
         print("The job has been calculated by other devices, the computer 's job will be canceled...")
 
